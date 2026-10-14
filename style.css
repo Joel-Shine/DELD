@@ -903,6 +903,52 @@ body { counter-reset: slide; }
     border-radius: 6px;
 }
 
+/* ---------- Title slide: college header + class footer ---------- */
+.title-header {
+    position: absolute;
+    top: 2.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    width: max-content;
+    max-width: calc(100% - 2 * var(--slide-pad));
+    text-align: center;
+}
+.college-logo {
+    display: block;
+    height: 5.5rem;
+    width: auto;
+    object-fit: contain;
+}
+.college-name {
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: bold;
+    letter-spacing: 0.25rem;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}
+.title-footer {
+    position: absolute;
+    bottom: 3.6rem;          /* sits just above the page number */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: max-content;
+    max-width: calc(100% - 2 * var(--slide-pad));
+    text-align: center;
+    color: #cccccc;
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+    padding: 0.45rem 1.2rem;
+    border-top: 1px solid rgba(0, 255, 0, 0.35);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.35);
+    background: rgba(0, 0, 0, 0.55);
+}
+
 /* ============================================================
    RESPONSIVE LAYOUT (screens only — print/PDF is untouched)
    ============================================================ */
@@ -913,6 +959,9 @@ body { counter-reset: slide; }
     .photo-collage { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; grid-auto-rows: 11rem; }
     .component-grid { grid-template-columns: repeat(2, 1fr); }
     .spec-grid { grid-template-columns: repeat(2, 1fr); }
+    .college-logo { height: 4rem; }
+    .college-name { font-size: 1rem; letter-spacing: 0.12rem; }
+    .title-footer { font-size: 0.85rem; letter-spacing: 0.1rem; white-space: normal; }
 }
 
 /* Phones and narrow portrait screens */
