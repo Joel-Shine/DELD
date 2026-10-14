@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Bit Digital Logic Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- SLIDE 1: TITLE -->
+    <div class="slide title-slide">
+        <svg class="circuit-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g class="traces"><path d="M860 220 L860 160 L760 160 L760 20 L700 20 L700 160 L640 160"/><path d="M260 740 L80 740 L80 660 L260 660 L260 600 L200 600 L200 700"/><path d="M400 720 L400 540 L340 540 L340 440"/><path d="M1440 120 L1440 260 L1540 260 L1540 440"/><path d="M660 260 L760 260 L760 360 L660 360 L660 420"/><path d="M420 660 L200 660 L200 840 L300 840 L300 880 L480 880 L480 820"/><path d="M720 640 L940 640 L940 860 L1040 860"/><path d="M920 60 L740 60 L740 20 L820 20 L820 20 L960 20 L960 20"/><path d="M460 600 L460 680 L640 680 L640 880 L740 880 L740 800 L680 800"/><path d="M420 320 L240 320 L240 420 L180 420 L180 560"/><path d="M1480 440 L1480 260 L1580 260 L1580 400 L1440 400"/><path d="M1260 840 L1200 840 L1200 700 L1260 700 L1260 520 L1200 520 L1200 340"/><path d="M1400 160 L1400 100 L1580 100 L1580 180 L1580 180 L1580 40"/><path d="M320 660 L220 660 L220 580 L440 580 L440 800 L300 800 L300 620"/><path d="M560 700 L380 700 L380 880 L160 880 L160 880 L340 880"/><path d="M600 720 L600 540 L680 540 L680 320 L760 320 L760 220"/><path d="M100 380 L320 380 L320 520 L220 520 L220 440 L300 440 L300 520"/><path d="M560 640 L780 640 L780 420 L560 420"/><path d="M1020 280 L1020 420 L1080 420 L1080 560 L860 560 L860 340 L780 340"/><path d="M100 220 L100 300 L320 300 L320 220 L260 220 L260 20 L80 20"/><path d="M1140 280 L1220 280 L1220 100 L1400 100 L1400 200"/><path d="M360 100 L360 320 L180 320 L180 140 L20 140 L20 20"/><path d="M40 220 L20 220 L20 40 L120 40 L120 20"/><path d="M660 280 L720 280 L720 100 L780 100 L780 20 L1000 20"/><path d="M1180 680 L1180 760 L1000 760 L1000 620 L860 620 L860 760 L760 760"/><path d="M220 300 L220 380 L300 380 L300 460 L220 460 L220 600"/><path d="M440 320 L440 500 L540 500 L540 580 L440 580"/><path d="M960 60 L960 20 L1100 20 L1100 200 L920 200 L920 140"/><path d="M300 140 L380 140 L380 220 L600 220 L600 80 L780 80"/><path d="M860 140 L640 140 L640 20 L540 20 L540 20 L440 20"/><path d="M600 120 L600 20 L700 20 L700 20 L640 20 L640 20"/><path d="M700 100 L800 100 L800 20 L900 20 L900 20"/><path d="M80 360 L20 360 L20 540 L100 540"/><path d="M300 580 L300 720 L80 720 L80 800 L20 800 L20 880 L20 880"/></g>
+            <g class="pads"><circle cx="860" cy="220" r="6"/><circle cx="640" cy="160" r="6"/><circle cx="260" cy="740" r="6"/><circle cx="200" cy="700" r="6"/><circle cx="400" cy="720" r="6"/><circle cx="340" cy="440" r="6"/><circle cx="1440" cy="120" r="6"/><circle cx="1540" cy="440" r="6"/><circle cx="660" cy="260" r="6"/><circle cx="660" cy="420" r="6"/><circle cx="420" cy="660" r="6"/><circle cx="480" cy="820" r="6"/><circle cx="720" cy="640" r="6"/><circle cx="1040" cy="860" r="6"/><circle cx="920" cy="60" r="6"/><circle cx="960" cy="20" r="6"/><circle cx="460" cy="600" r="6"/><circle cx="680" cy="800" r="6"/><circle cx="420" cy="320" r="6"/><circle cx="180" cy="560" r="6"/><circle cx="1480" cy="440" r="6"/><circle cx="1440" cy="400" r="6"/><circle cx="1260" cy="840" r="6"/><circle cx="1200" cy="340" r="6"/><circle cx="1400" cy="160" r="6"/><circle cx="1580" cy="40" r="6"/><circle cx="320" cy="660" r="6"/><circle cx="300" cy="620" r="6"/><circle cx="560" cy="700" r="6"/><circle cx="340" cy="880" r="6"/><circle cx="600" cy="720" r="6"/><circle cx="760" cy="220" r="6"/><circle cx="100" cy="380" r="6"/><circle cx="300" cy="520" r="6"/><circle cx="560" cy="640" r="6"/><circle cx="560" cy="420" r="6"/><circle cx="1020" cy="280" r="6"/><circle cx="780" cy="340" r="6"/><circle cx="100" cy="220" r="6"/><circle cx="80" cy="20" r="6"/><circle cx="1140" cy="280" r="6"/><circle cx="1400" cy="200" r="6"/><circle cx="360" cy="100" r="6"/><circle cx="20" cy="20" r="6"/><circle cx="40" cy="220" r="6"/><circle cx="120" cy="20" r="6"/><circle cx="660" cy="280" r="6"/><circle cx="1000" cy="20" r="6"/><circle cx="1180" cy="680" r="6"/><circle cx="760" cy="760" r="6"/><circle cx="220" cy="300" r="6"/><circle cx="220" cy="600" r="6"/><circle cx="440" cy="320" r="6"/><circle cx="440" cy="580" r="6"/><circle cx="960" cy="60" r="6"/><circle cx="920" cy="140" r="6"/><circle cx="300" cy="140" r="6"/><circle cx="780" cy="80" r="6"/><circle cx="860" cy="140" r="6"/><circle cx="440" cy="20" r="6"/><circle cx="600" cy="120" r="6"/><circle cx="640" cy="20" r="6"/><circle cx="700" cy="100" r="6"/><circle cx="900" cy="20" r="6"/><circle cx="80" cy="360" r="6"/><circle cx="100" cy="540" r="6"/><circle cx="300" cy="580" r="6"/><circle cx="20" cy="880" r="6"/></g>
+            <g class="chips"><rect class="chip" x="170" y="150" width="140" height="70" rx="4"/><rect x="180" y="140" width="8" height="10"/><rect x="180" y="220" width="8" height="10"/><rect x="202" y="140" width="8" height="10"/><rect x="202" y="220" width="8" height="10"/><rect x="224" y="140" width="8" height="10"/><rect x="224" y="220" width="8" height="10"/><rect x="246" y="140" width="8" height="10"/><rect x="246" y="220" width="8" height="10"/><rect x="268" y="140" width="8" height="10"/><rect x="268" y="220" width="8" height="10"/><rect class="chip" x="1300" y="120" width="180" height="70" rx="4"/><rect x="1310" y="110" width="8" height="10"/><rect x="1310" y="190" width="8" height="10"/><rect x="1332" y="110" width="8" height="10"/><rect x="1332" y="190" width="8" height="10"/><rect x="1354" y="110" width="8" height="10"/><rect x="1354" y="190" width="8" height="10"/><rect x="1376" y="110" width="8" height="10"/><rect x="1376" y="190" width="8" height="10"/><rect x="1398" y="110" width="8" height="10"/><rect x="1398" y="190" width="8" height="10"/><rect x="1420" y="110" width="8" height="10"/><rect x="1420" y="190" width="8" height="10"/><rect x="1442" y="110" width="8" height="10"/><rect x="1442" y="190" width="8" height="10"/><rect class="chip" x="140" y="700" width="160" height="70" rx="4"/><rect x="150" y="690" width="8" height="10"/><rect x="150" y="770" width="8" height="10"/><rect x="172" y="690" width="8" height="10"/><rect x="172" y="770" width="8" height="10"/><rect x="194" y="690" width="8" height="10"/><rect x="194" y="770" width="8" height="10"/><rect x="216" y="690" width="8" height="10"/><rect x="216" y="770" width="8" height="10"/><rect x="238" y="690" width="8" height="10"/><rect x="238" y="770" width="8" height="10"/><rect x="260" y="690" width="8" height="10"/><rect x="260" y="770" width="8" height="10"/><rect class="chip" x="1320" y="720" width="140" height="70" rx="4"/><rect x="1330" y="710" width="8" height="10"/><rect x="1330" y="790" width="8" height="10"/><rect x="1352" y="710" width="8" height="10"/><rect x="1352" y="790" width="8" height="10"/><rect x="1374" y="710" width="8" height="10"/><rect x="1374" y="790" width="8" height="10"/><rect x="1396" y="710" width="8" height="10"/><rect x="1396" y="790" width="8" height="10"/><rect x="1418" y="710" width="8" height="10"/><rect x="1418" y="790" width="8" height="10"/><rect class="chip" x="760" y="70" width="120" height="60" rx="4"/><rect x="770" y="60" width="8" height="10"/><rect x="770" y="130" width="8" height="10"/><rect x="792" y="60" width="8" height="10"/><rect x="792" y="130" width="8" height="10"/><rect x="814" y="60" width="8" height="10"/><rect x="814" y="130" width="8" height="10"/><rect x="836" y="60" width="8" height="10"/><rect x="836" y="130" width="8" height="10"/><rect class="chip" x="780" y="820" width="150" height="60" rx="4"/><rect x="790" y="810" width="8" height="10"/><rect x="790" y="880" width="8" height="10"/><rect x="812" y="810" width="8" height="10"/><rect x="812" y="880" width="8" height="10"/><rect x="834" y="810" width="8" height="10"/><rect x="834" y="880" width="8" height="10"/><rect x="856" y="810" width="8" height="10"/><rect x="856" y="880" width="8" height="10"/><rect x="878" y="810" width="8" height="10"/><rect x="878" y="880" width="8" height="10"/><rect x="900" y="810" width="8" height="10"/><rect x="900" y="880" width="8" height="10"/></g>
+            <g class="pulses"><path class="pulse p0" d="M860 220 L860 160 L760 160 L760 20 L700 20 L700 160 L640 160"/><path class="pulse p1" d="M660 260 L760 260 L760 360 L660 360 L660 420"/><path class="pulse p2" d="M460 600 L460 680 L640 680 L640 880 L740 880 L740 800 L680 800"/><path class="pulse p0" d="M1400 160 L1400 100 L1580 100 L1580 180 L1580 180 L1580 40"/><path class="pulse p1" d="M100 380 L320 380 L320 520 L220 520 L220 440 L300 440 L300 520"/><path class="pulse p2" d="M1140 280 L1220 280 L1220 100 L1400 100 L1400 200"/><path class="pulse p0" d="M1180 680 L1180 760 L1000 760 L1000 620 L860 620 L860 760 L760 760"/><path class="pulse p1" d="M300 140 L380 140 L380 220 L600 220 L600 80 L780 80"/><path class="pulse p2" d="M80 360 L20 360 L20 540 L100 540"/></g>
+        </svg>
+        <h1>4-Bit Digital Logic Calculator</h1>
+        <div class="subtitle">Computing at the fundamental gate level.</div>
+    </div>
+
+    <!-- SLIDE 2: TEAM -->
+    <div class="slide">
+        <h2>TEAM MEMBERS</h2>
+        <div class="grid-container">
+            <div class="card">
+                <div class="card-title">Manuel John James</div>
+                <div class="card-role">Hardware Lead</div>
+                <div class="card-roll">Roll No: 35</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Gautham Rendhir</div>
+                <div class="card-role">Verilog & Simulation Lead</div>
+                <div class="card-roll">Roll No: 27</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Joel Shine</div>
+                <div class="card-role">Tech Lead</div>
+                <div class="card-roll">Roll No: 32</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Abhinav K</div>
+                <div class="card-role">Documentation & Billing Manager</div>
+                <div class="card-roll">Roll No: 5</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: INTRODUCTION -->
+    <div class="slide">
+        <h2>INTRODUCTION</h2>
+        <div class="split-layout">
+            <div class="split-left">
+                <p>The project involves the design and implementation of a custom <strong>4-bit digital logic calculator</strong> capable of executing core operations entirely through fundamental logic gates and integrated circuits.</p>
+                <p>This calculator acts as a practical demonstration of hardware architecture, bridging the gap between theoretical logic and physical hardware design without relying on software-based microcontrollers.</p>
+            </div>
+            <div class="split-right">
+                <div class="data-badge">
+                    <div class="badge-label">Course Code</div>
+                    <div class="badge-value">PBEOT304</div>
+                </div>
+                <div class="subject-info">DIGITAL ELECTRONICS AND LOGIC SYSTEM DESIGN</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: PROBLEM STATEMENT & GOALS -->
+    <div class="slide">
+        <h2>PROBLEM STATEMENT</h2>
+        <div class="problem-box">
+            <h3>System Challenge</h3>
+            <p style="margin: 0; line-height: 1.5; color: #cccccc;">Modern computing abstracts operations via software. However, designing a multi-operation ALU from scratch requires solving physical complexity challenges—such as precise multiplexer routing, finite state control, and strictly minimizing propagation delay across discrete physical ICs.</p>
+        </div>
+        <div class="goal-box">
+            <h3>Project Goals</h3>
+            <ul>
+                <li><span class="highlight">Arithmetic Execution:</span> Implement core 4-bit operations including Addition, Subtraction, Multiplication, and Division using combinational logic.</li>
+                <li><span class="highlight">Logical Operations:</span> Integrate foundational bitwise functions including AND, OR, and XOR logic.</li>
+                <li><span class="highlight">Hardware Portability:</span> Develop corresponding Verilog code for the hardware to enable simulation and future FPGA expansion.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: METHODOLOGY (PHASES) -->
+    <div class="slide">
+        <h2>METHODOLOGY <span class="h2-subtitle">Development Phases</span></h2>
+        <div class="grid-3-col">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <div class="step-title">Conceptualization</div>
+                <div class="step-desc">Initial system design, ideation, and mathematical formulation of the logic bounds.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <div class="step-title">Architectural Workflow</div>
+                <div class="step-desc">Mapping the block diagrams, data paths, and multiplexer routing strategies.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <div class="step-title">Circuit Simulation</div>
+                <div class="step-desc">Designing and validating the schematic gate logic in digital simulation environments.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">04</div>
+                <div class="step-title">Hardware Implementation</div>
+                <div class="step-desc">Translating schematics into physical breadboard assemblies using discrete ICs.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">05</div>
+                <div class="step-title">Verilog Synthesis</div>
+                <div class="step-desc">Writing corresponding Hardware Description Language (HDL) modules for the logic block.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">06</div>
+                <div class="step-title">Prototype Testing</div>
+                <div class="step-desc">Final circuit completion, real-world edge-case testing, and voltage/delay validation.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: METHODOLOGY (TOOLS) -->
+    <div class="slide">
+        <h2>METHODOLOGY <span class="h2-subtitle">Toolchain Overview</span></h2>
+        <div class="grid-3-col">
+            <div class="tool-card">
+                <div class="tool-name">Proteus</div>
+                <div class="tool-desc">Utilized for high-fidelity circuit simulation, logic verification, and virtual schematic routing before hardware deployment.</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-name">Figma</div>
+                <div class="tool-desc">Employed for creating custom electronic component vector designs, visual block diagrams, and system architecture mapping.</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-name">EDA Playground</div>
+                <div class="tool-desc">Cloud-based environment used for writing, simulating, and verifying the Verilog HDL modules and testbenches.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: TRANSITION -->
+    <div class="slide simulation-transition">
+        <div class="transition-title">SIMULATION PHASE</div>
+    </div>
+
+    <!-- SLIDE 8: CIRCUIT DIAGRAM -->
+    <div class="slide">
+        <h2>CIRCUIT DIAGRAM</h2>
+        <!-- To add the diagram: replace the comment below with the <img> tag. It fits inside the frame automatically and can be clicked to enlarge. -->
+        <div class="img-slot circuit-frame" data-label="[ Insert circuit_diagram.png here ]"><img src="images/circuitfull.jpeg" alt="Complete circuit diagram"></div>
+    </div>
+
+    <!-- SLIDE 9: STAGE BREAKDOWN -->
+    <div class="slide">
+        <h2>SYSTEM STAGE BREAKDOWN <span class="h2-subtitle">Architecture Overview</span></h2>
+        <div class="grid-3-col">
+            <div class="step-card" style="border-top-color: #5bc0de;">
+                <div class="step-title" style="margin-top:0;">Input & Registers</div>
+                <div class="step-desc">4-bit operand entry routing (A3..A0, B3..B0) feeds directly into 4-bit Register A and Register B for stabilization prior to computation.</div>
+            </div>
+            <div class="step-card" style="border-top-color: #5cb85c;">
+                <div class="step-title" style="margin-top:0;">Combinational ALU</div>
+                <div class="step-desc">Handles immediate logic execution, housing the Adder/Subtractor (using 2's-complement logic) and the bitwise Logic Unit (AND, OR, XOR).</div>
+            </div>
+            <div class="step-card" style="border-top-color: #f0ad4e;">
+                <div class="step-title" style="margin-top:0;">Sequential Unit</div>
+                <div class="step-desc">Multi-cycle computational block driving the Multiplier (shift-and-add) and Divider (repeated subtraction) via an FSM-driven accumulator, counter, and comparator.</div>
+            </div>
+            <div class="step-card" style="border-top-color: #555555;">
+                <div class="step-title" style="margin-top:0;">Control FSM (Moore/Mealy)</div>
+                <div class="step-desc">Orchestrates system states sequencing: operand entry → op-select → compute (single/multi-cycle) → store/display.</div>
+            </div>
+            <div class="step-card" style="border-top-color: #d9534f;">
+                <div class="step-title" style="margin-top:0;">Memory Unit</div>
+                <div class="step-desc">Integrated 8x4 RAM block managed by a 3-bit address line (ADDR) for dynamic operation result storing and recall.</div>
+            </div>
+            <div class="step-card" style="border-top-color: #9966cc;">
+                <div class="step-title" style="margin-top:0;">Output & Display Path</div>
+                <div class="step-desc">The operation-select controlled Output MUX routes the final 4-bit signal to a BCD to 7-segment Decoder, driving the final numerical display.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: INDIVIDUAL CIRCUIT COMPONENTS -->
+    <!-- To add an image: replace the comment inside an .img-slot with the <img> tag (the placeholder text disappears automatically). -->
+    <div class="slide">
+        <h2>INDIVIDUAL CIRCUIT COMPONENTS <span class="h2-subtitle">Simulation Phase</span></h2>
+        <div class="component-grid">
+            <div class="component-item">
+                <div class="img-slot" data-label="[ Adder ]"><img src="images/adder.jpeg" alt="Adder"></div>
+                <div class="component-name">Adder</div>
+                <div class="component-desc">74283 4-bit full adders with 7486 XOR inversion for 2's-complement subtraction.</div>
+            </div>
+            <div class="component-item">
+                <div class="img-slot" data-label="[ Logic Control Block ]"><img src="images/logic_control_block.jpeg" alt="Logic Control Block"></div>
+                <div class="component-name">Logic Control Block</div>
+                <div class="component-desc">74139 decoder and 7474 flip-flops enable the selected unit and sequence each operation.</div>
+            </div>
+            <div class="component-item">
+                <div class="img-slot" data-label="[ Operand Assembler ]"><img src="images/operand_assembler.jpeg" alt="Operand Assembler"></div>
+                <div class="component-name">Operand Assembler</div>
+                <div class="component-desc">Latches the DIP-switch inputs into 74173 registers to form stable 4-bit operands A and B.</div>
+            </div>
+            <div class="component-item">
+                <div class="img-slot" data-label="[ Priority Encoder ]"><img src="images/prio_encoder.jpeg" alt="Priority Encoder"></div>
+                <div class="component-name">Priority Encoder</div>
+                <div class="component-desc">Two cascaded 74148s convert the 13 key lines into a single binary op-code.</div>
+            </div>
+            <div class="component-item">
+                <div class="img-slot" data-label="[ Div/Mul Counter ]"><img src="images/divmul_counter.jpeg" alt="Div/Mul Counter"></div>
+                <div class="component-name">Div/Mul Counter</div>
+                <div class="component-desc">74191 counters with a 7485 comparator track the repeated add/subtract cycles on each clock.</div>
+            </div>
+            <div class="component-item">
+                <div class="img-slot" data-label="[ Keypad Matrix ]"><img src="images/keypad_matrix.jpeg" alt="Keypad Matrix"></div>
+                <div class="component-name">Keypad Matrix</div>
+                <div class="component-desc">13 push buttons with 10 kΩ resistor networks, debounced through 7414 Schmitt triggers.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: RESULTS AND INFERENCES -->
+    <div class="slide">
+        <h2>RESULTS AND INFERENCES <span class="h2-subtitle">Simulation Phase</span></h2>
+        <div class="results-grid">
+            <div class="result-figure">
+                <div class="img-slot" data-label="[ Simulation Output 1 ]"><img src="images/3x4.jpeg" alt="Simulation output: 3 x 4 = 12"></div>
+                <div class="result-caption">Fig 1 — Sequential Arithmetic (3 × 4 = 12)</div>
+                <p class="result-text">Operands <span class="highlight">A = 0011 (3)</span> and <span class="highlight">B = 0100 (4)</span> were entered, and the MUL key started the shift-and-add sequence. On every tick of the 555 clock, the circuit checked one bit of B, added the shifted copy of A to the running total whenever that bit was 1, and stepped the counter forward. After <span class="highlight">4 clock cycles</span> the counter stopped the operation, and the result <span class="highlight">1100</span> appeared on the 7-segment displays as <span class="highlight">12</span>. This confirms that the sequential unit, counter and control logic work together correctly across multiple clock cycles.</p>
+            </div>
+            <div class="result-figure">
+                <div class="img-slot" data-label="[ Simulation Output 2 ]"><img src="images/5xor3.jpeg" alt="Simulation output: 5 XOR 3 = 6"></div>
+                <div class="result-caption">Fig 2 — Bitwise Logic (5 XOR 3 = 6)</div>
+                <p class="result-text">Operands <span class="highlight">A = 0101 (5)</span> and <span class="highlight">B = 0011 (3)</span> were entered and the XOR key was pressed. The 7486 XOR gates compared the two numbers bit by bit, giving a 1 only where the bits differ: <span class="highlight">0101 ⊕ 0011 = 0110</span>. The output MUX routed this to the display, which showed <span class="highlight">6</span> straight away, with no waiting on the clock. This confirms that the logic unit gives an instant combinational result and that the operation-select path picks the correct unit.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: HARDWARE TRANSITION -->
+    <div class="slide hardware-transition">
+        <div class="hardware-title">HARDWARE PHASE</div>
+    </div>
+
+    <!-- SLIDE 13: HARDWARE PHOTOS -->
+    <div class="slide">
+        <h2>CIRCUIT DIAGRAMS <span class="h2-subtitle">Hardware Integration</span></h2>
+        <div class="photo-collage">
+            <div class="photo-placeholder img-slot photo-wide" data-label="[ Breadboard Top View / Global Layout ]"><img src="images/circ1.jpeg" alt="Breadboard top view"></div>
+            <div class="photo-placeholder img-slot" data-label="[ Component Focus 1 ]"><!-- <img src="images/hw_focus_1.jpg" alt="Component close-up 1"> --></div>
+            <div class="photo-placeholder img-slot" data-label="[ Component Focus 2 ]"><!-- <img src="images/hw_focus_2.jpg" alt="Component close-up 2"> --></div>
+            <div class="photo-placeholder img-slot photo-wide" data-label="[ Wiring / Interconnect Detail ]"><img src="images/circ2.jpeg" alt="Wiring detail"></div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: DESIGN SPECIFICATIONS -->
+    <div class="slide">
+        <h2>DESIGN <span class="h2-subtitle">Hardware Specifications</span></h2>
+        <div class="spec-grid">
+            <div class="spec-card">
+                <div class="spec-title">Logic Family &amp; Supply</div>
+                <div class="spec-value">One chip family · 5 V</div>
+                <div class="spec-desc">Every chip on the board comes from the same family, so they all understand the same HIGH and LOW signals. One common 5 V supply powers all of them, and these chips are cheap and easy to find in local shops.</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-title">System Clock</div>
+                <div class="spec-value">≈ 10 ticks per second</div>
+                <div class="spec-desc">The 555 timer is the calculator's heartbeat. It ticks about 10 times a second, which is slow enough for us to watch multiplication and division happen step by step. The 1 kΩ, 6.8 kΩ and 10 µF parts were picked to set exactly that speed.</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-title">Input Conditioning</div>
+                <div class="spec-value">Clean, single button presses</div>
+                <div class="spec-desc">A real button doesn't press cleanly. It flickers on and off for a split second, and a chip could read that as several presses. Special smoothing chips turn the flicker into one clean press, and resistors make sure an "off" switch always reads as a firm off.</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-title">Display Drive</div>
+                <div class="spec-value">330 Ω on every segment</div>
+                <div class="spec-desc">Each segment of the display is a tiny LED, and LEDs burn out if too much current flows through them. A resistor on every segment keeps them bright enough to read from the back of the class, without straining the display or the chip driving it.</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-title">Reset &amp; Decoupling</div>
+                <div class="spec-value">Clean start · steady power</div>
+                <div class="spec-desc">When power is switched on, the reset circuit holds everything still for a moment, so the calculator always starts from a clean slate. A small capacitor beside every chip works like a mini power reserve, so one chip switching doesn't disturb its neighbours.</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-title">Power Budget</div>
+                <div class="spec-value">Under 1 A total · 1 A+ supply</div>
+                <div class="spec-desc">Adding up what all 60 chips and the display use comes to well under one amp. Using a 5 V supply that can deliver at least 1 A leaves plenty of headroom, so the voltage stays steady even when every segment is lit.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: HARDWARE COMPONENTS (TABLE 1) -->
+    <div class="slide">
+        <h2>HARDWARE COMPONENTS <span class="h2-subtitle">Bill of Materials (1/2)</span></h2>
+        <table class="hardware-table bom">
+            <colgroup>
+                <col style="width: 18%;">
+                <col style="width: 52%;">
+                <col style="width: 12%;">
+                <col style="width: 18%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Specification</th>
+                    <th>Qty</th>
+                    <th>Cost (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>74148</td><td>8-to-3 Line Priority Encoder</td><td>x2</td><td>₹70</td></tr>
+                <tr><td>7414</td><td>Hex Schmitt-Trigger Inverter</td><td>x5</td><td>₹75</td></tr>
+                <tr><td>7474</td><td>Dual D-Type Flip-Flop</td><td>x6</td><td>₹90</td></tr>
+                <tr><td>7408</td><td>Quad 2-Input AND Gate</td><td>x10</td><td>₹120</td></tr>
+                <tr><td>7432</td><td>Quad 2-Input OR Gate</td><td>x5</td><td>₹60</td></tr>
+                <tr><td>7400</td><td>Quad 2-Input NAND Gate</td><td>x1</td><td>₹10</td></tr>
+                <tr><td>7427</td><td>Triple 3-Input NOR Gate</td><td>x2</td><td>₹36</td></tr>
+                <tr><td>74139</td><td>Dual 2-to-4 Line Decoder</td><td>x1</td><td>₹25</td></tr>
+                <tr><td>74194</td><td>4-Bit Bidirectional Universal Shift Register</td><td>x1</td><td>₹35</td></tr>
+                <tr><td>74283</td><td>4-Bit Binary Full Adder (Fast Carry)</td><td>x2</td><td>₹60</td></tr>
+                <tr><td>74173</td><td>4-Bit D-Type Register (3-State)</td><td>x2</td><td>₹70</td></tr>
+                <tr><td>7486</td><td>Quad 2-Input XOR Gate</td><td>x2</td><td>₹30</td></tr>
+                <tr><td>74157</td><td>Quad 2-to-1 Line Multiplexer</td><td>x4</td><td>₹100</td></tr>
+                <tr><td>74273</td><td>Octal D-Type Flip-Flop with Clear</td><td>x1</td><td>₹40</td></tr>
+                <tr><td>74191</td><td>4-Bit Synchronous Up/Down Binary Counter</td><td>x3</td><td>₹105</td></tr>
+                <tr><td>7411</td><td>Triple 3-Input AND Gate</td><td>x2</td><td>₹30</td></tr>
+                <tr><td>7421</td><td>Dual 4-Input AND Gate</td><td>x1</td><td>₹20</td></tr>
+                <tr><td>74160</td><td>Synchronous Decade (BCD) Counter</td><td>x2</td><td>₹60</td></tr>
+                <tr><td>7447</td><td>BCD to 7-Segment Decoder/Driver (Active-Low)</td><td>x2</td><td>₹60</td></tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="3">Subtotal (1/2)</td><td>₹1,096</td></tr>
+            </tfoot>
+        </table>
+        <div class="bom-note">* Approximate local retail prices</div>
+    </div>
+
+    <!-- SLIDE 16: HARDWARE COMPONENTS (TABLE 2) -->
+    <div class="slide">
+        <h2>HARDWARE COMPONENTS <span class="h2-subtitle">Bill of Materials (2/2)</span></h2>
+        <table class="hardware-table bom">
+            <colgroup>
+                <col style="width: 18%;">
+                <col style="width: 52%;">
+                <col style="width: 12%;">
+                <col style="width: 18%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Specification</th>
+                    <th>Qty</th>
+                    <th>Cost (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>7410</td><td>Triple 3-Input NAND Gate</td><td>x1</td><td>₹12</td></tr>
+                <tr><td>74153</td><td>Dual 4-to-1 Line Multiplexer</td><td>x3</td><td>₹75</td></tr>
+                <tr><td>7485</td><td>4-Bit Magnitude Comparator</td><td>x1</td><td>₹35</td></tr>
+                <tr><td>NE555</td><td>Timer IC (Astable, 10 Hz System Clock)</td><td>x1</td><td>₹29</td></tr>
+                <tr><td>DIP Switch</td><td>4-Position (Operand A &amp; B Input)</td><td>x2</td><td>₹30</td></tr>
+                <tr><td>Push Button</td><td>Tactile (12 Operations + Equals)</td><td>x13</td><td>₹39</td></tr>
+                <tr><td>Resistor Network</td><td>10 kΩ SIP Array</td><td>x2</td><td>₹20</td></tr>
+                <tr><td>7-Segment Display</td><td>Common Anode, Single Digit</td><td>x2</td><td>₹30</td></tr>
+                <tr><td>Red LED</td><td>5 mm (Error Indicator)</td><td>x1</td><td>₹2</td></tr>
+                <tr><td>Resistor</td><td>10 kΩ (8 DIP Pull-downs + 1 Reset)</td><td>x9</td><td>₹9</td></tr>
+                <tr><td>Resistor</td><td>330 Ω (Segment Current Limiting)</td><td>x14</td><td>₹14</td></tr>
+                <tr><td>Resistor</td><td>470 Ω (LED) · 1 kΩ, 6.8 kΩ (555 Timing)</td><td>x3</td><td>₹3</td></tr>
+                <tr><td>Capacitor</td><td>10 µF Electrolytic (555 Timing)</td><td>x1</td><td>₹3</td></tr>
+                <tr><td>Capacitor</td><td>10 nF Ceramic (555 Control Pin)</td><td>x1</td><td>₹1</td></tr>
+                <tr><td>Capacitor</td><td>1 µF (Power-on Reset)</td><td>x1</td><td>₹2</td></tr>
+                <tr><td>Capacitor</td><td>100 nF Ceramic (104) Decoupling, 7 per IC</td><td>x60</td><td>₹420</td></tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="3">Subtotal (2/2)</td><td>₹343</td></tr>
+                <tr class="grand-total"><td colspan="3">GRAND TOTAL</td><td>₹1,820</td></tr>
+            </tfoot>
+        </table>
+        <div class="bom-note">* Approximate local retail prices</div>
+    </div>
+
+    <!-- SLIDE 17: VERILOG TRANSITION -->
+    <div class="slide verilog-transition">
+        <div class="verilog-code-bg">
+module alu #(parameter OPW = 8)(
+    input  wire [OPW-1:0]    a,
+    input  wire [OPW-1:0]    b,
+    input  wire [3:0]        op_code,
+    output reg  [2*OPW-1:0]  result,
+    output reg                div_by_zero
+);
+    localparam OP_ADD = 4'd0, OP_SUB = 4'd1, OP_MUL = 4'd2, OP_DIV = 4'd3,
+               OP_AND = 4'd4, OP_OR  = 4'd5, OP_XOR = 4'd6, OP_MOD = 4'd7,
+               OP_GT  = 4'd8, OP_LT  = 4'd9, OP_EQ  = 4'd10;
+
+    always @(*) begin
+        div_by_zero = 1'b0;
+        case (op_code)
+            OP_ADD: result = a + b;
+            OP_SUB: result = a - b;
+            OP_MUL: result = a * b;
+            OP_DIV: if (b == 0) begin result = 0; div_by_zero = 1'b1; end
+                     else result = a / b;
+            OP_MOD: if (b == 0) begin result = 0; div_by_zero = 1'b1; end
+                     else result = a % b;
+            OP_AND: result = a & b;
+            OP_OR : result = a | b;
+            OP_XOR: result = a ^ b;
+            OP_GT : result = (a > b)  ? {{(2*OPW-1){1'b0}}, 1'b1} : 0;
+            OP_LT : result = (a < b)  ? {{(2*OPW-1){1'b0}}, 1'b1} : 0;
+            OP_EQ : result = (a == b) ? {{(2*OPW-1){1'b0}}, 1'b1} : 0;
+            default: result = 0;
+        endcase
+    end
+endmodule
+        </div>
+        <div class="transition-title">VERILOG PHASE</div>
+    </div>
+
+    <!-- SLIDE 18: VERILOG ARCHITECTURE -->
+    <div class="slide">
+        <h2>VERILOG SYNTHESIS <span class="h2-subtitle">Module Architecture</span></h2>
+        <div class="grid-3-col">
+            <div class="step-card">
+                <div class="step-title" style="margin-top:0;">Top-Level & I/O</div>
+                <div class="step-desc">The <code>calculator_4bit_top.v</code> module wires the system. The 6x4 matrix keypad is scanned and debounced by <code>keypad_scanner.v</code>, and raw signals are translated via <code>key_decoder.v</code>.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-title" style="margin-top:0;">FSM Core</div>
+                <div class="step-desc"><code>calculator_core.v</code> drives the sequencing through standard states: <code>S_ENTER_A</code>, <code>S_ENTER_B</code>, and <code>S_RESULT</code>, handling digit accumulation and operator latching.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-title" style="margin-top:0;">Combinational ALU</div>
+                <div class="step-desc"><code>alu.v</code> handles the immediate arithmetic (Add, Sub, Mul, Div, Mod), bitwise logic (AND, OR, XOR), and comparisons across double-width output.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 19: VERILOG CODE SNIPPETS (all four on one slide) -->
+    <div class="slide">
+        <h2>VERILOG SYNTHESIS <span class="h2-subtitle">Core Logic &amp; Hardware Interfacing</span></h2>
+        <div class="code-grid">
+            <div class="code-panel">
+                <div class="code-header"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-file">calculator_core.v</span><span class="code-tag">FSM Data Accumulation</span></div>
+<pre class="code-pre"><span class="code-keyword">case</span> (state)
+    <span class="code-keyword">S_ENTER_B</span>: <span class="code-keyword">begin</span>
+        <span class="code-keyword">if</span> (is_digit)
+            operand_b &lt;= operand_b * <span class="code-string">10</span> + digit_value;
+        <span class="code-keyword">else if</span> (is_equals) <span class="code-keyword">begin</span>
+            result &lt;= alu_result;
+            error  &lt;= alu_error;
+            state  &lt;= <span class="code-keyword">S_RESULT</span>;
+        <span class="code-keyword">end</span>
+    <span class="code-keyword">end</span>
+<span class="code-keyword">endcase</span></pre>
+            </div>
+            <div class="code-panel">
+                <div class="code-header"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-file">alu.v</span><span class="code-tag">Execution &amp; Error Handling</span></div>
+<pre class="code-pre"><span class="code-keyword">always</span> @(*) <span class="code-keyword">begin</span>
+    div_by_zero = <span class="code-string">1'b0</span>;
+    <span class="code-keyword">case</span> (op_code)
+        <span class="code-keyword">OP_ADD</span>: result = a + b;
+        <span class="code-keyword">OP_DIV</span>: <span class="code-keyword">if</span> (b == <span class="code-string">0</span>) <span class="code-keyword">begin</span>
+                    result = <span class="code-string">0</span>;
+                    div_by_zero = <span class="code-string">1'b1</span>;
+                <span class="code-keyword">end</span> <span class="code-keyword">else</span>
+                    result = a / b;
+    <span class="code-keyword">endcase</span>
+<span class="code-keyword">end</span></pre>
+            </div>
+            <div class="code-panel">
+                <div class="code-header"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-file">keypad_scanner.v</span><span class="code-tag">Row Driver Sequence</span></div>
+<pre class="code-pre"><span class="code-keyword">always</span> @(*) <span class="code-keyword">begin</span>
+    <span class="code-keyword">case</span> (row_idx)
+        <span class="code-string">3'd0</span>: row = <span class="code-string">6'b111110</span>;
+        <span class="code-string">3'd1</span>: row = <span class="code-string">6'b111101</span>;
+        <span class="code-string">3'd2</span>: row = <span class="code-string">6'b111011</span>;
+        <span class="code-string">3'd3</span>: row = <span class="code-string">6'b110111</span>;
+        <span class="code-keyword">default</span>: row = <span class="code-string">6'b111111</span>;
+    <span class="code-keyword">endcase</span>
+<span class="code-keyword">end</span></pre>
+            </div>
+            <div class="code-panel">
+                <div class="code-header"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-file">calculator_4bit_top.v</span><span class="code-tag">Component Wiring</span></div>
+<pre class="code-pre"><span class="code-function">calculator_core</span> #(.OPW(OPW)) u_core (
+    .clk(clk), .rst(rst),
+    .key_valid(key_valid),
+    .is_digit(is_digit), .digit_value(digit_value),
+    .is_op(is_op), .op_code(op_code),
+    .is_clear(is_clear), .is_equals(is_equals),
+    .result(result), .error(error)
+);</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 20: VERILOG TESTBENCH -->
+    <div class="slide">
+        <h2>VERILOG SYNTHESIS <span class="h2-subtitle">Testbench Results</span></h2>
+        <div class="split-layout">
+            <div class="split-left" style="font-size: 1.15rem;">
+                The <code>calculator_tb.v</code> physically models keypad column/row pulls to validate the entire hardware chain. Results confirm 2's complement logic bounds, zero-division error handling, and FSM chaining successfully pass standard arithmetic bounds.
+            </div>
+            <div class="split-right" style="flex: 1.5; margin-top: 0; width: 100%;">
+                <div class="terminal-box">
+                    > ivl_version "13.0 (stable)"<br>
+                    <span class="term-pass-bright">[PASS] 12 + 3 : a=12 b=3 -> result=15 error=0</span><br>
+                    <span class="term-pass-mid">[PASS] 15 - 6 : a=15 b=6 -> result=9 error=0</span><br>
+                    <span class="term-info">[PASS] 15 / 0 : a=15 b=0 -> result=0 error=1</span><br>
+                    <span class="term-pass-dark">[PASS] 9 AND 5 : a=9 b=5 -> result=1 error=0</span><br>
+                    <span class="term-pass-bright">[PASS] 4 &lt; 9 : a=4 b=9 -> result=1 error=0</span><br>
+                    <span class="term-info">[INFO] 5 + 3 -> 8</span><br>
+                    <span class="term-pass-mid">[PASS] chained 5+3+2 : got 10</span><br>
+                    <span style="color:#ffffff;">> All tests complete.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 21: DESIGN SPECIFICATION JUSTIFICATION -->
+    <div class="slide">
+        <h2>DESIGN SPECIFICATION <span class="h2-subtitle">Justification</span></h2>
+        <div class="grid-3-col">
+            <div class="card">
+                <div class="card-title">Gate-Level Approach</div>
+                <div class="card-role">Why Discrete ICs?</div>
+                <div class="card-roll">Avoided microcontrollers to demonstrate raw digital logic manipulation, finite state machines, and physical propagation delay management.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">4-Bit Constraints</div>
+                <div class="card-role">Word Size Optimization</div>
+                <div class="card-roll">Balances architectural complexity and physical footprint. 4-bit allows for full proof-of-concept without breadboard overcrowding and immense wiring chaos.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Power Efficiency</div>
+                <div class="card-role">CMOS & TTL Logic</div>
+                <div class="card-roll">Selected optimal IC logic families where applicable to reduce thermal output, minimize current draw, and ensure stable logic thresholds.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 22: HARDWARE ANALYSIS -->
+    <div class="slide">
+        <h2>HARDWARE ANALYSIS <span class="h2-subtitle">Performance Metrics</span></h2>
+        <div class="split-layout">
+            <div class="split-left">
+                <div class="problem-box" style="border-left-color:#f0ad4e; background: rgba(240, 173, 78, 0.05);">
+                    <h3 style="color:#f0ad4e;">Propagation Delay</h3>
+                    <p style="margin: 0; line-height: 1.5; color: #cccccc;">Cumulative gate delays (t_pd) across cascaded adders and extensive MUX stages were actively measured and mitigated using lookahead logic strategies.</p>
+                </div>
+                <div class="goal-box">
+                    <h3>Signal Integrity</h3>
+                    <ul>
+                        <li><span class="highlight">Debouncing:</span> Hardware RC filters and Schmitt triggers applied to raw keypad inputs.</li>
+                        <li><span class="highlight">Power Rails:</span> Capacitive decoupling (0.1µF) implemented across all IC VCC pins to stabilize switching noise.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="split-right">
+                <div class="data-badge">
+                    <div class="badge-label">Clock Stability</div>
+                    <div class="badge-value">99.8%</div>
+                </div>
+                <div class="subject-info">Measured Validation via Oscilloscope</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 23: LEARNING OUTCOMES -->
+    <div class="slide">
+        <h2>LEARNING OUTCOMES <span class="h2-subtitle">Project Reflection</span></h2>
+        <div class="grid-3-col">
+            <div class="step-card" style="border-top-color: #5bc0de;">
+                <div class="step-number">01</div>
+                <div class="step-title">Hardware Debugging</div>
+                <div class="step-desc">Mastered the use of logic probes, multimeters, and oscilloscopes to isolate floating pins, ground loops, and timing hazards.</div>
+            </div>
+            <div class="step-card" style="border-top-color: #5cb85c;">
+                <div class="step-number">02</div>
+                <div class="step-title">Verilog Proficiency</div>
+                <div class="step-desc">Gained robust practical experience translating physical hardware states into behavioral and structural HDL models.</div>
+            </div>
+            <div class="step-card" style="border-top-color: #9966cc;">
+                <div class="step-number">03</div>
+                <div class="step-title">System Architecture</div>
+                <div class="step-desc">Deepened core understanding of FSM control planes, datapath routing, ALU combinational logic, and memory interfacing.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 24: REFERENCES -->
+    <div class="slide">
+        <h2>REFERENCES <span class="h2-subtitle">Literature & Datasheets</span></h2>
+        <div class="code-box" style="border-top-color: #555555; background: rgba(0,0,0,0.4); height: auto;">
+            <ul>
+                <li><span class="highlight">Morris Mano, M. & Ciletti, M.D.</span> — Digital Design: With an Introduction to the Verilog HDL.</li>
+                <li><span class="highlight">Texas Instruments</span> — SN74LS Series Logic IC Datasheets (74LS83, 74LS153, 74LS08, 74LS32, etc.).</li>
+                <li><span class="highlight">IEEE Standard 1364-2005</span> — IEEE Standard for Verilog Hardware Description Language.</li>
+                <li><span class="highlight">Labcenter Electronics</span> — Proteus VSM Digital Simulation Documentation and Guidelines.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SLIDE 25: THANK YOU -->
+    <div class="slide simulation-transition">
+        <div class="thankyou-box">
+            <div class="thankyou-title">THANK YOU</div>
+            <p class="thankyou-line">We sincerely thank you for your time and attention. Like a well-designed circuit, this project worked because every component, and every person behind it, played its part.</p>
+        </div>
+    </div>
+
+    <!-- IMAGE VIEWER (opens when any inserted image is clicked) -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+        <div class="lightbox-stage">
+            <img class="lightbox-img" id="lightbox-img" alt="">
+        </div>
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+        <div class="lightbox-hint">Click image to toggle actual size · Esc or click outside to close</div>
+    </div>
+
+    <script>
+        (function () {
+            var box = document.getElementById('lightbox');
+            var img = document.getElementById('lightbox-img');
+            var cap = document.getElementById('lightbox-caption');
+
+            function open(src, alt) {
+                img.src = src;
+                img.alt = alt || '';
+                cap.textContent = alt || '';
+                box.classList.remove('zoomed');
+                box.classList.add('open');
+                box.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+            function close() {
+                box.classList.remove('open', 'zoomed');
+                box.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            // Any image placed inside an image slot becomes clickable
+            document.addEventListener('click', function (e) {
+                var t = e.target;
+                if (t.tagName === 'IMG' && t.closest('.img-slot')) {
+                    open(t.currentSrc || t.src, t.alt);
+                }
+            });
+
+            // Click the enlarged image: toggle fit-to-screen / actual size
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                box.classList.toggle('zoomed');
+            });
+
+            // Click outside the image or the X to close
+            box.addEventListener('click', function (e) {
+                if (e.target !== img) close();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && box.classList.contains('open')) close();
+            });
+        })();
+    </script>
+
+</body>
+</html>

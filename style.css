@@ -1,0 +1,1017 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400;700&display=swap');
+
+/* ============================================================
+   GLOBAL SIZING
+   Everything is sized in rem, so changing the root font-size
+   scales the whole deck proportionally.
+   ============================================================ */
+:root {
+    /* Width of the slide title + its underline. All content boxes match this. */
+    --content-w: 70rem;
+    --slide-pad: 2.7rem;
+}
+
+html {
+    /* Base size used for print/PDF (unchanged from before) */
+    font-size: 115%;
+}
+
+/* On screens only: root size follows the viewport, so the deck
+   scales up on smartboards/TVs and down on laptops, tablets and phones.
+   ~18.4px at 1920x1080 (same as before), smaller on smaller screens. */
+@media screen {
+    html {
+        font-size: clamp(10px, calc(0.55vw + 0.55vh + 2px), 30px);
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cascadia Code', monospace;
+    background-color: #050505;
+    background-image: 
+        radial-gradient(circle at top right, #0a1f0a 0%, #000000 80%),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(0, 255, 0, 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 1.6rem 1.6rem, 1.6rem 1.6rem;
+    color: #cccccc;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 1.15rem;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Slide Container */
+.slide {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--slide-pad);
+    border-bottom: 2px solid rgba(0, 255, 0, 0.1);
+    position: relative;
+    page-break-after: always; 
+}
+
+/* ============================================================
+   CONTENT WIDTH
+   Every block that sits directly on a slide is limited to the
+   same width as the title underline (h2), instead of spanning
+   the full page.
+   ============================================================ */
+h2,
+.grid-container, .grid-3-col, .split-layout, .circle-container,
+.photo-collage, .spec-container, .hardware-table, .image-placeholder,
+.component-grid, .results-grid, .spec-grid, .code-grid, .circuit-frame,
+.slide > .problem-box,
+.slide > .goal-box,
+.slide > .code-box,
+.slide > .terminal-box {
+    width: 100%;
+    max-width: var(--content-w);
+}
+
+/* Transition Slides (Bright White Foreground) */
+.transition-title {
+    font-size: 4.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 255, 0, 0.6);
+    background: rgba(0, 0, 0, 0.85);
+    padding: 1.35rem 2.7rem;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    letter-spacing: 0.3rem;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3) inset;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.simulation-transition {
+    background-color: #020502;
+    background-image: 
+        linear-gradient(90deg, transparent 48%, rgba(0, 255, 0, 0.15) 48%, rgba(0, 255, 0, 0.15) 52%, transparent 52%),
+        linear-gradient(0deg, transparent 48%, rgba(0, 255, 0, 0.15) 48%, rgba(0, 255, 0, 0.15) 52%, transparent 52%),
+        radial-gradient(circle at 20% 30%, #00ff00 2px, transparent 3px),
+        radial-gradient(circle at 80% 70%, #00ff00 2px, transparent 3px),
+        radial-gradient(circle at 30% 80%, #00ff00 2px, transparent 3px),
+        radial-gradient(circle at 70% 20%, #00ff00 2px, transparent 3px);
+    background-size: 5.4rem 5.4rem, 5.4rem 5.4rem, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+.hardware-transition {
+    background-color: #040604;
+    background-image: 
+        linear-gradient(90deg, transparent 48%, #000000 48%, #000000 52%, transparent 52%),
+        radial-gradient(circle at 7.5px 7.5px, rgba(0, 255, 0, 0.25) 2px, transparent 2.5px);
+    background-size: 100% 100%, 15px 15px;
+}
+
+.hardware-title {
+    font-size: 4.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 255, 0, 0.6);
+    background: #000000;
+    padding: 1.6rem 3.8rem;
+    border-top: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    border-left: 0.8rem solid #ffffff;
+    border-right: 0.8rem solid #ffffff;
+    letter-spacing: 0.45rem;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.3) inset, 0 10px 30px rgba(0,0,0,0.9);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Verilog Transition Background */
+.verilog-transition {
+    background-color: #000000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verilog-code-bg {
+    position: absolute;
+    top: -2.7rem;
+    left: -2.7rem;
+    right: -2.7rem;
+    bottom: -2.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00ff00;
+    opacity: 0.35;
+    font-size: 1.15rem;
+    white-space: pre-wrap;
+    text-align: center;
+    z-index: 1;
+    pointer-events: none;
+    line-height: 1.6;
+    filter: blur(3px);
+}
+
+/* Headings */
+h1 {
+    color: #00ff00;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+    font-size: 4rem;
+    margin-bottom: 0.55rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #00ff00;
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1.6rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    border-bottom: 2px solid rgba(0, 255, 0, 0.3);
+    padding-bottom: 0.55rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    align-items: baseline;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.h2-subtitle {
+    font-size: 1.4rem;
+    color: #888888;
+    text-shadow: none;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.subtitle {
+    color: #888888;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+/* Layouts */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.2rem;
+}
+
+.grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+}
+
+.split-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.7rem;
+}
+
+.split-left {
+    flex: 1;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    min-width: 0;
+}
+
+.split-right {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.1rem;
+    min-width: 0;
+}
+
+/* Components */
+.card, .step-card, .tool-card {
+    background: rgba(0, 255, 0, 0.03);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    padding: 1.35rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.card { border-left: 4px solid #00ff00; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(0, 255, 0, 0.15); border-color: #00ff00; }
+.card-title { color: #ffffff; font-size: 1.5rem; margin-bottom: 0.3rem; font-weight: bold; }
+.card-role { color: #00ff00; font-size: 1.1rem; margin-bottom: 0.55rem; }
+.card-roll { color: #888888; font-size: 1rem; }
+
+.step-card {
+    background: rgba(0, 0, 0, 0.6);
+    border-top: 3px solid #00ff00;
+    position: relative;
+}
+.step-number {
+    position: absolute;
+    top: -1.1rem;
+    right: 1.1rem;
+    background: #050505;
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 1.8rem;
+    padding: 0 0.65rem;
+    border: 1px solid #00ff00;
+    border-radius: 4px;
+}
+.step-title { color: #ffffff; font-size: 1.3rem; margin: 0.8rem 0; font-weight: bold; }
+.step-desc { color: #888888; font-size: 1.05rem; line-height: 1.5; }
+
+.data-badge {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ff00;
+    padding: 1.6rem;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2) inset, 0 0 20px rgba(0, 255, 0, 0.2);
+    text-align: center;
+    width: 100%;
+}
+.badge-label { color: #888888; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.55rem; }
+.badge-value { color: #00ff00; font-size: 2.8rem; font-weight: bold; text-shadow: 0 0 10px #00ff00; }
+.subject-info { color: #ffffff; margin-top: 0.8rem; font-size: 1rem; text-align: center; }
+
+.problem-box {
+    background: rgba(255, 85, 85, 0.05);
+    border: 1px solid rgba(255, 85, 85, 0.3);
+    border-left: 4px solid #ff5555;
+    padding: 1.35rem;
+    margin-bottom: 1.6rem;
+    border-radius: 4px;
+    width: 100%;
+}
+.problem-box h3 { color: #ff5555; margin-top: 0; margin-bottom: 0.55rem; font-size: 1.3rem; text-shadow: 0 0 8px rgba(255, 85, 85, 0.3); }
+
+.goal-box {
+    background: rgba(0, 255, 0, 0.03);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-left: 4px solid #00ff00;
+    padding: 1.35rem;
+    border-radius: 4px;
+    width: 100%;
+}
+.goal-box h3 { color: #00ff00; margin-top: 0; margin-bottom: 0.8rem; font-size: 1.3rem; }
+
+.tool-card { text-align: center; border: 1px dashed rgba(0, 255, 0, 0.3); }
+.tool-card:hover { background: rgba(0, 255, 0, 0.05); border: 1px solid #00ff00; }
+.tool-name { color: #00ff00; font-size: 1.6rem; font-weight: bold; margin-bottom: 0.8rem; letter-spacing: 1px; }
+.tool-desc { color: #cccccc; font-size: 1.1rem; line-height: 1.5; }
+
+.circle-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.7rem;
+    flex-grow: 1;
+    margin-bottom: 1.6rem;
+}
+.circle-node {
+    width: 15.2rem;
+    height: 15.2rem;
+    border-radius: 50%;
+    border: 2px dashed rgba(0, 255, 0, 0.3);
+    background: rgba(0, 255, 0, 0.02);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.6rem;
+    color: #666;
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+    position: relative;
+}
+.circle-node:hover {
+    border-style: solid;
+    border-color: #00ff00;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.15) inset, 0 0 20px rgba(0, 255, 0, 0.1);
+    color: #00ff00;
+    transform: scale(1.05);
+}
+
+.photo-collage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 13.6rem);
+    gap: 1.35rem;
+    flex-grow: 1;
+    margin-bottom: 1.6rem;
+}
+.photo-placeholder {
+    border: 2px dashed rgba(0, 255, 0, 0.3);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 255, 0, 0.02);
+    color: #555;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 1.1rem;
+}
+.photo-wide { grid-column: span 2; }
+
+.spec-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    flex-grow: 1;
+    margin-bottom: 1.6rem;
+    justify-content: center;
+}
+.spec-box {
+    border: 1px dashed rgba(0, 255, 0, 0.3);
+    border-left: 4px solid #00ff00;
+    background: rgba(0, 255, 0, 0.02);
+    padding: 1.9rem;
+    border-radius: 4px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    min-height: 7rem;
+    text-align: center;
+}
+
+/* ============================================================
+   IMAGE SLOTS (image-insert-ready blocks)
+   While a slot is empty it shows its data-label as placeholder
+   text. Drop an <img> inside and the placeholder disappears and
+   the image fills the block automatically.
+   ============================================================ */
+.img-slot {
+    position: relative;
+    width: 100%;
+    border: 2px dashed rgba(0, 255, 0, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 255, 0, 0.02);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.img-slot:empty::before {
+    content: attr(data-label);
+    color: #555;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 1rem;
+}
+.img-slot:not(:empty) {
+    padding: 0;
+    border-style: solid;
+    border-color: rgba(0, 255, 0, 0.45);
+    background: #000000;
+}
+.img-slot:hover {
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.12);
+}
+.img-slot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* whole image visible, no cropping */
+}
+/* Hardware photos fill their tiles edge to edge */
+.photo-placeholder.img-slot img { object-fit: cover; }
+/* Inserted images can be clicked to open the full-size viewer */
+.img-slot img { cursor: zoom-in; }
+
+/* ============================================================
+   IMAGE VIEWER (LIGHTBOX)
+   ============================================================ */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(4px);
+}
+.lightbox.open { display: flex; }
+.lightbox-stage {
+    max-width: 100%;
+    max-height: calc(100vh - 7rem);
+    overflow: auto;
+    border: 2px solid #00ff00;
+    border-radius: 6px;
+    background: #000000;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.2);
+}
+.lightbox-img {
+    display: block;
+    max-width: calc(100vw - 4rem);
+    max-height: calc(100vh - 7.5rem);
+    object-fit: contain;
+    cursor: zoom-in;
+}
+/* Actual-size mode: image at native resolution, scroll to pan */
+.lightbox.zoomed .lightbox-img {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+}
+.lightbox-caption {
+    color: #ffffff;
+    font-size: 1rem;
+    text-align: center;
+}
+.lightbox-hint {
+    color: #666666;
+    font-size: 0.8rem;
+    text-align: center;
+}
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.4rem;
+    background: transparent;
+    border: 1px solid #00ff00;
+    border-radius: 4px;
+    color: #00ff00;
+    font-family: inherit;
+    font-size: 1.8rem;
+    line-height: 1;
+    width: 2.6rem;
+    height: 2.6rem;
+    cursor: pointer;
+}
+.lightbox-close:hover { background: rgba(0, 255, 0, 0.12); }
+
+/* ---------- Individual Circuit Components (6 square tiles) ---------- */
+.component-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem 1.6rem;
+}
+.component-item {
+    /* Square side: as big as the column allows, but small enough
+       that both rows + captions fit on one screen */
+    --sq: min(100%, max(9rem, calc((100vh - 24rem) / 2)));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.component-item .img-slot {
+    width: var(--sq);
+    aspect-ratio: 1 / 1;
+}
+.component-name {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.15rem;
+    margin-top: 0.7rem;
+}
+.component-desc {
+    color: #888888;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-top: 0.25rem;
+    max-width: var(--sq);
+}
+
+/* ---------- Results & Inferences (2 large image blocks) ---------- */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.2rem;
+}
+.result-figure {
+    display: flex;
+    flex-direction: column;
+}
+.result-figure .img-slot {
+    aspect-ratio: 16 / 10;
+}
+.result-caption {
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 0.8rem;
+}
+.result-text {
+    color: #cccccc;
+    font-size: 1rem;
+    line-height: 1.55;
+    margin: 0.6rem 0 0;
+}
+.result-text .highlight { color: #ffffff; }
+
+/* ---------- Design: Hardware Specifications ---------- */
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.3rem;
+}
+.spec-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    border-left: 4px solid #00ff00;
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    transition: all 0.3s ease;
+}
+.spec-card:hover { border-color: #00ff00; box-shadow: 0 0 20px rgba(0, 255, 0, 0.12); }
+.spec-title {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+.spec-value {
+    display: inline-block;
+    color: #00ff00;
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+    padding: 0.15rem 0.55rem;
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    border-radius: 3px;
+    background: rgba(0, 255, 0, 0.05);
+}
+.spec-desc {
+    color: #999999;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+/* Tables */
+.hardware-table {
+    border-collapse: collapse;
+    background: rgba(0, 255, 0, 0.01);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    margin-bottom: 1.6rem;
+    flex-grow: 0;
+    table-layout: fixed;
+}
+.hardware-table th {
+    background: rgba(0, 255, 0, 0.05);
+    color: #00ff00;
+    padding: 1.1rem;
+    text-align: center;
+    border-bottom: 2px solid #00ff00;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+.hardware-table td {
+    padding: 1.1rem;
+    border-bottom: 1px dashed rgba(0, 255, 0, 0.2);
+    color: #cccccc;
+    height: 2.2rem;
+    text-align: center;
+    word-wrap: break-word;
+}
+/* Vertical column separators */
+.hardware-table th:not(:last-child),
+.hardware-table td:not(:last-child) {
+    border-right: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+/* Compact Bill-of-Materials variant (many rows per slide) */
+.hardware-table.bom th {
+    padding: 0.55rem 0.7rem;
+    font-size: 1.05rem;
+}
+.hardware-table.bom td {
+    padding: 0.3rem 0.7rem;
+    height: auto;
+    font-size: 0.9rem;
+    line-height: 1.25;
+}
+.hardware-table.bom td:first-child { color: #ffffff; font-weight: bold; }
+.hardware-table.bom td:nth-child(2) { text-align: left; }
+.hardware-table.bom tfoot td {
+    border-top: 2px solid #00ff00;
+    border-bottom: none;
+    background: rgba(0, 255, 0, 0.05);
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+}
+.hardware-table.bom tfoot tr.grand-total td {
+    color: #ffffff;
+    font-size: 1.1rem;
+    border-top: 1px solid rgba(0, 255, 0, 0.4);
+}
+.bom-note {
+    width: 100%;
+    max-width: var(--content-w);
+    color: #666666;
+    font-size: 0.85rem;
+    margin-top: -1rem;
+    text-align: right;
+}
+
+.image-placeholder {
+    flex-grow: 1;
+    min-height: 20rem;
+    margin-bottom: 1.6rem;
+    border: 2px dashed rgba(0, 255, 0, 0.3);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 255, 0, 0.02);
+}
+.image-placeholder-text { color: #555; font-size: 1.3rem; letter-spacing: 2px; text-align: center; padding: 1rem; }
+
+/* Code Blocks & Terminal */
+.code-box {
+    background: #0a0a0a;
+    border: 1px solid #333;
+    border-top: 0.8rem solid #1a1a1a;
+    padding: 1.35rem;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 1.05rem;
+    color: #d4d4d4;
+    overflow-x: auto;
+}
+
+/* ---------- Verilog snippets: 4 editor-style panels in one slide ---------- */
+.code-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem 1.4rem;
+}
+.code-panel {
+    background: #0a0a0a;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    overflow: hidden;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.code-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333333;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+.code-dots { display: inline-flex; gap: 0.3rem; }
+.code-dots i {
+    display: block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #444444;
+}
+.code-dots i:nth-child(1) { background: #ff5f56; }
+.code-dots i:nth-child(2) { background: #ffbd2e; }
+.code-dots i:nth-child(3) { background: #27c93f; }
+.code-file { color: #ffffff; font-weight: bold; }
+.code-tag { color: #6a9955; margin-left: auto; }
+.code-pre {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    font-family: 'Cascadia Code', monospace;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #d4d4d4;
+    white-space: pre;        /* keep line breaks and indentation */
+    tab-size: 4;
+    overflow-x: auto;
+    flex-grow: 1;
+}
+
+.code-keyword { color: #569cd6; }
+.code-function { color: #dcdcaa; }
+.code-comment { color: #6a9955; }
+.code-string { color: #ce9178; }
+
+.terminal-box {
+    background: #000000;
+    border: 2px solid #333;
+    padding: 1.6rem;
+    border-radius: 8px;
+    color: #00ff00;
+    font-family: 'Cascadia Code', monospace;
+    font-size: 1.15rem;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.05) inset;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+.term-pass-bright { color: #00ff00; }
+.term-pass-mid { color: #32cd32; }
+.term-pass-dark { color: #2e8b57; }
+.term-info { color: #5bc0de; }
+.term-fail { color: #ff5555; }
+
+ul { list-style-type: none; padding-left: 0; margin: 0; }
+ul li { position: relative; padding-left: 1.6rem; margin-bottom: 0.8rem; color: #cccccc; font-size: 1.15rem;}
+ul li::before { content: '>'; position: absolute; left: 0; color: #00ff00; font-weight: bold; }
+.highlight { color: #ffffff; font-weight: bold; }
+
+/* ============================================================
+   THANK YOU SLIDE
+   ============================================================ */
+.thankyou-box {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 44rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+    padding: 2.7rem 2.2rem;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.2) inset;
+}
+.thankyou-title {
+    color: #ffffff;
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(0, 255, 0, 0.5);
+    margin-bottom: 1.4rem;
+}
+.thankyou-line {
+    color: #00ff00;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* ============================================================
+   PAGE NUMBERS (bottom centre of every slide)
+   ============================================================ */
+body { counter-reset: slide; }
+.slide { counter-increment: slide; }
+.slide::after {
+    content: counter(slide, decimal-leading-zero);
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    color: rgba(0, 255, 0, 0.55);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid rgba(0, 255, 0, 0.25);
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+}
+
+/* ============================================================
+   TITLE SLIDE: faint circuit wiring + gradient
+   ============================================================ */
+.title-slide {
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 35%, transparent 70%),
+        radial-gradient(circle at 15% 20%, rgba(0, 255, 0, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(0, 200, 120, 0.10) 0%, transparent 45%),
+        linear-gradient(135deg, #020a02 0%, #000000 55%, #031208 100%);
+}
+.title-slide > h1,
+.title-slide > .subtitle { position: relative; z-index: 2; }
+.circuit-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.16;
+    pointer-events: none;
+    /* fade the wiring out towards the centre so the title stays crisp */
+    -webkit-mask-image: radial-gradient(ellipse 55% 45% at center, transparent 30%, #000 85%);
+            mask-image: radial-gradient(ellipse 55% 45% at center, transparent 30%, #000 85%);
+}
+.circuit-bg .traces path {
+    fill: none;
+    stroke: #00ff00;
+    stroke-width: 3;
+    stroke-linejoin: round;
+}
+.circuit-bg .pads circle { fill: #000; stroke: #00ff00; stroke-width: 3; }
+.circuit-bg .chips .chip { fill: rgba(0, 255, 0, 0.08); stroke: #00ff00; stroke-width: 2.5; }
+.circuit-bg .chips rect:not(.chip) { fill: #00ff00; }
+/* small signal pulses travelling along some traces */
+.circuit-bg .pulses path {
+    fill: none;
+    stroke: #aaffaa;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 18 1400;
+    animation: signal 6s linear infinite;
+}
+.circuit-bg .pulses .p1 { animation-delay: -2s; animation-duration: 7.5s; }
+.circuit-bg .pulses .p2 { animation-delay: -4s; animation-duration: 9s; }
+@keyframes signal { to { stroke-dashoffset: -1418; } }
+@media (prefers-reduced-motion: reduce) {
+    .circuit-bg .pulses { display: none; }
+}
+
+/* ============================================================
+   CIRCUIT DIAGRAM FRAME (slide 8)
+   The picture always fits fully inside the rounded frame.
+   ============================================================ */
+.img-slot.circuit-frame {
+    width: 100%;
+    max-width: var(--content-w);
+    height: calc(100vh - 14rem);
+    min-height: 18rem;
+    border-radius: 12px;
+}
+.img-slot.circuit-frame:not(:empty) {
+    padding: 0.8rem;
+    background: #000000;
+}
+.img-slot.circuit-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+/* ============================================================
+   RESPONSIVE LAYOUT (screens only — print/PDF is untouched)
+   ============================================================ */
+
+/* Tablets / small laptops */
+@media screen and (max-width: 1024px) {
+    .grid-3-col { grid-template-columns: repeat(2, 1fr); }
+    .photo-collage { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; grid-auto-rows: 11rem; }
+    .component-grid { grid-template-columns: repeat(2, 1fr); }
+    .spec-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Phones and narrow portrait screens */
+@media screen and (max-width: 768px), screen and (orientation: portrait) and (max-width: 1024px) {
+    :root { --slide-pad: 1.6rem; }
+
+    h1 { font-size: 2.6rem; }
+    h2 { font-size: 1.9rem; }
+    .h2-subtitle { font-size: 1.15rem; }
+
+    .grid-container,
+    .grid-3-col,
+    .results-grid,
+    .spec-grid,
+    .code-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+
+    .component-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1rem; }
+    .component-item { --sq: 100%; }
+
+    .split-layout { flex-direction: column; gap: 1.6rem; }
+    .split-left, .split-right { width: 100%; flex: none !important; }
+
+    .photo-collage { grid-template-columns: 1fr; grid-auto-rows: 10rem; }
+    .photo-wide { grid-column: span 1; }
+
+    .circle-node { width: 12rem; height: 12rem; font-size: 1.05rem; }
+
+    .transition-title,
+    .hardware-title { font-size: 2.4rem; letter-spacing: 0.2rem; padding: 1.2rem 1.6rem; }
+
+    .hardware-table th { font-size: 1.05rem; padding: 0.7rem; }
+    .hardware-table td { padding: 0.7rem; }
+    .hardware-table.bom th { font-size: 0.85rem; padding: 0.45rem 0.4rem; }
+    .hardware-table.bom td { font-size: 0.8rem; padding: 0.3rem 0.4rem; }
+    .bom-note { margin-top: -0.8rem; }
+
+    .code-box, .terminal-box { font-size: 0.95rem; }
+    .code-pre { font-size: 0.8rem; }
+    .img-slot.circuit-frame { height: 60vh; }
+    .code-tag { display: none; }
+
+    .thankyou-title { font-size: 2.8rem; letter-spacing: 0.3rem; }
+    .thankyou-line { font-size: 1.1rem; }
+}
+
+/* Very short landscape screens (e.g. phone held sideways) */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .slide { justify-content: flex-start; }
+    .component-item { --sq: min(100%, 12rem); }
+}
+
+/* ============================================================
+   PDF EXPORT (Ctrl+P → Save as PDF)
+   Each slide becomes one 16:9 page (1920 × 1080), with every
+   background, glow and effect kept exactly as on screen.
+   Only the animations and the image viewer are left out.
+   ============================================================ */
+@page {
+    size: 1920px 1080px;
+    margin: 0;
+}
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        animation: none !important;
+        transition: none !important;
+        /* Glows become boxy highlight artefacts in PDFs, so drop only those.
+           Backgrounds, borders and colours are all kept. */
+        text-shadow: none !important;
+        box-shadow: none !important;
+    }
+    /* Keep the white transition/thank-you titles bold and crisp without their glow */
+    .transition-title,
+    .hardware-title,
+    .thankyou-title { color: #ffffff !important; }
+    h1 { color: #00ff00 !important; }
+    html { font-size: 115% !important; }   /* same scale as a 1080p screen */
+    html, body {
+        width: 1920px;
+        background-color: #050505 !important;
+    }
+    .slide {
+        width: 1920px;
+        height: 1080px;
+        min-height: 1080px;
+        overflow: hidden;
+        border-bottom: none;
+        page-break-after: auto;
+        break-after: auto;
+        break-inside: avoid;
+    }
+    .slide + .slide {
+        page-break-before: always;
+        break-before: page;
+    }
+    .lightbox,
+    .circuit-bg .pulses { display: none !important; }
+    .img-slot.circuit-frame { height: calc(1080px - 14rem); }
+    .component-item { --sq: min(100%, calc((1080px - 24rem) / 2)); }
+}

@@ -1,0 +1,47 @@
+ICs
+74148 x2
+7414 x5
+7474 x6
+7408 x10
+7432 x5
+7400 x1
+7427 x2
+74139 x1
+74194 x1
+74283 x2
+74173 x2
+7486 x2
+74157 x4
+74273 x1
+74191 x3
+7411 x2
+7421 x1
+74160 x2
+7447 x2
+7410 x1
+74153 x3
+7485 x1
+NE555 x1
+
+INPUT
+4-position DIP switch x2
+10k resistor x8 (DIP switch pull-downs)
+Push buttons x13 (12 operations + equals)
+10k resistor network x2
+
+DISPLAY & INDICATORS
+Common anode 7-segment display x2
+330 ohm x14
+Red LED x1 (error)
+470 ohm x1
+
+555 CLOCK (10 Hz)
+1k x1
+6.8k x1
+10uF electrolytic x1
+10nF ceramic x1
+
+OTHER
+10k x1
+1uF x1
+100nF ceramic (104) x1 per chip
