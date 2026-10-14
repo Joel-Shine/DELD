@@ -173,7 +173,7 @@
             </div>
             <div class="step-card" style="border-top-color: #f0ad4e;">
                 <div class="step-title" style="margin-top:0;">Sequential Unit</div>
-                <div class="step-desc">Multi-cycle computational block driving the Multiplier (shift-and-add) and Divider (repeated subtraction) via an FSM-driven accumulator, counter, and comparator.</div>
+                <div class="step-desc">Multi-cycle computational block driving the Multiplier (repeated addition) and Divider (repeated subtraction) via an FSM-driven accumulator, counter, and comparator.</div>
             </div>
             <div class="step-card" style="border-top-color: #555555;">
                 <div class="step-title" style="margin-top:0;">Control FSM (Moore/Mealy)</div>
@@ -232,10 +232,10 @@
     <div class="slide">
         <h2>RESULTS AND INFERENCES <span class="h2-subtitle">Simulation Phase</span></h2>
         <div class="results-grid">
-            <div class="result-figure">
+                        <div class="result-figure">
                 <div class="img-slot" data-label="[ Simulation Output 1 ]"><img src="images/3x4.jpeg" alt="Simulation output: 3 x 4 = 12"></div>
                 <div class="result-caption">Fig 1 — Sequential Arithmetic (3 × 4 = 12)</div>
-                <p class="result-text">Operands <span class="highlight">A = 0011 (3)</span> and <span class="highlight">B = 0100 (4)</span> were entered, and the MUL key started the shift-and-add sequence. On every tick of the 555 clock, the circuit checked one bit of B, added the shifted copy of A to the running total whenever that bit was 1, and stepped the counter forward. After <span class="highlight">4 clock cycles</span> the counter stopped the operation, and the result <span class="highlight">1100</span> appeared on the 7-segment displays as <span class="highlight">12</span>. This confirms that the sequential unit, counter and control logic work together correctly across multiple clock cycles.</p>
+                <p class="result-text">Operands <span class="highlight">A = 0011 (3)</span> and <span class="highlight">B = 0100 (4)</span> were entered and the MUL key was pressed. The circuit multiplies by <span class="highlight">repeated addition</span>: B is loaded into the 74191 counter, and on every tick of the 555 clock the 74283 adder adds A to the running total held in the accumulator while the counter counts down by one. The total climbs <span class="highlight">3 → 6 → 9 → 12</span>, and when the counter reaches zero the control logic stops the operation. After <span class="highlight">4 clock cycles</span> the result <span class="highlight">1100</span> appeared on the 7-segment displays as <span class="highlight">12</span>, confirming that the adder, counter and control logic work together correctly across multiple clock cycles.</p>
             </div>
             <div class="result-figure">
                 <div class="img-slot" data-label="[ Simulation Output 2 ]"><img src="images/5xor3.jpeg" alt="Simulation output: 5 XOR 3 = 6"></div>
@@ -548,7 +548,7 @@ endmodule
         </div>
     </div>
 
-    <!-- SLIDE 22: HARDWARE ANALYSIS -->
+    <!-- SLIDE 22: HARDWARE ANALYSIS 
     <div class="slide">
         <h2>HARDWARE ANALYSIS <span class="h2-subtitle">Performance Metrics</span></h2>
         <div class="split-layout">
@@ -575,6 +575,8 @@ endmodule
         </div>
     </div>
 
+    -->
+
     <!-- SLIDE 23: LEARNING OUTCOMES -->
     <div class="slide">
         <h2>LEARNING OUTCOMES <span class="h2-subtitle">Project Reflection</span></h2>
@@ -582,7 +584,7 @@ endmodule
             <div class="step-card" style="border-top-color: #5bc0de;">
                 <div class="step-number">01</div>
                 <div class="step-title">Hardware Debugging</div>
-                <div class="step-desc">Mastered the use of logic probes, multimeters, and oscilloscopes to isolate floating pins, ground loops, and timing hazards.</div>
+                <div class="step-desc">Mastered the use of logic probes and multimeters to isolate floating pins, ground loops, and timing hazards.</div>
             </div>
             <div class="step-card" style="border-top-color: #5cb85c;">
                 <div class="step-number">02</div>
@@ -606,6 +608,8 @@ endmodule
                 <li><span class="highlight">Texas Instruments</span> — SN74LS Series Logic IC Datasheets (74LS83, 74LS153, 74LS08, 74LS32, etc.).</li>
                 <li><span class="highlight">IEEE Standard 1364-2005</span> — IEEE Standard for Verilog Hardware Description Language.</li>
                 <li><span class="highlight">Labcenter Electronics</span> — Proteus VSM Digital Simulation Documentation and Guidelines.</li>
+                <li><span class="highlight">Verilog Mastery | Beginner to Advanced (Youtube)</span> - https://www.youtube.com/watch?v=YUB-OyGr1oA&pp=ygUedmVyaWxvZyB0dXRvcmlhbCBmb3IgYmVnaW5uZXJz </li>
+                <li><span class="highlight">ALU Functions and Bus Organization</span> - https://www.geeksforgeeks.org/computer-organization-architecture/introduction-of-alu-and-data-path/ </li>
             </ul>
         </div>
     </div>
